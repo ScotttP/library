@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+</head>
+<body>
+    <div class="appContainer">
+        <div class="userInputContainer">
+            <form>
+                <input type="text" id="bookTitle" placeholder="Title">
+                <input type="text" id="bookAuthor" placeholder="Author">
+                <input type="text" id="bookPages" placeholder="Pages">
+                <label for="readOrNot">Have You Read This Book? </label>
+                <select id="readOrNot">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </form>
+        </div>
+        <div class="addBookAndSave">
+            <button id="addToBookListButton">Add To Book List</button>
+            <button id="saveButton">Save</button>
+        </div>
+        <div class="bookListTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th>Read?</th>
+                        <th>Delete Button</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Harry Potter</td>
+                        <td>JK Rowling</td>
+                        <td>69</td>
+                        <td>Yes</td>
+                        <td><button>DELETE</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
+</html>
