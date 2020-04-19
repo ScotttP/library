@@ -7,7 +7,12 @@ let readOrNot = document.getElementById('readOrNot').value
 
 //QUERY SELECTORS
 let tableContents = document.querySelector('#tableContents');
+let addToBookListButton = document.querySelector('#addToBookListButton');
 
+//EVENT LISTENERS
+addToBookListButton.addEventListener('click', () => {
+    render();
+})
 
 const userInput = new Book (bookTitle,bookAuthor,bookPages,readOrNot)
 
@@ -37,5 +42,5 @@ function render () {
 
 //CALLS
 userInput.addBookToLibrary()
-render();
+
 
