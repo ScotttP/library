@@ -12,20 +12,17 @@ const addToBookListButton = document.querySelector('#addToBookListButton');
 
 //EVENT LISTENERS
 addToBookListButton.addEventListener('click', () => {
-    bookTitle = document.getElementById('bookTitle').value
-    bookAuthor = document.getElementById('bookAuthor').value
-    bookPages = document.getElementById('bookPages').value
-    readOrNot = document.getElementById('readOrNot').value
+    addBooktoMyLibrary();
     renderBooksInTable();
+    console.log(myLibrary);
 
 })
 addToBookListButton.addEventListener('keypress', function(e) {
     if (e.key == 'enter'){
+        addBooktoMyLibrary();
         renderBooksInTable();
     }
 })
-
-const userInput = new Book (bookTitle,bookAuthor,bookPages,readOrNot)
 
 //CONSTRUCTORS
 function Book (title,author,pages,readOrNot) {
@@ -35,44 +32,29 @@ function Book (title,author,pages,readOrNot) {
     this.readOrNot = readOrNot
 }
 //PROTOTYPES
-Book.prototype.addBookToLibrary = function () {
-    myLibrary.push(this.title,this.author,this.pages,this.readOrNot)
-    
-}
+
+
 //FUNCTIONS
+function addBooktoMyLibrary () {
+    bookTitle = document.getElementById('bookTitle').value;
+    bookAuthor = document.getElementById('bookAuthor').value;
+    bookPages = document.getElementById('bookPages').value;
+    readOrNot = document.getElementById('readOrNot').value;
+
+    const userInput = new Book (bookTitle,bookAuthor,bookPages,readOrNot);
+
+    myLibrary.push(userInput)
+}
 function renderBooksInTable () {
-    addTableRow = document.createElement('tr')
-    tBody.appendChild(addTableRow)
-    for (let i = 0; i <= myLibrary.length; i++){
-        let addTableRowContents = document.createElement('td')
-        addTableRowContents.textContent = myLibrary[i]
-        addTableRow.appendChild(addTableRowContents)
-    
-    }
-    let tableRowIndex = addTableRow.rowIndex
-    addDeleteButton();
-    addDeleteListeners(tableRowIndex);
+
 }
 function addDeleteButton () {
-    let deleteButton = document.createElement('button')
-    deleteButton.classList.add('deleteButton')
-    deleteButton.textContent = 'DELETE'
-    addTableRow.appendChild(deleteButton)
     
 }
+function addDeleteListeners () {
 
-function addDeleteListeners (tableRowIndex) {
-   let deleteButtonSelector =  document.querySelectorAll('.deleteButton');
-    deleteButtonSelector.forEach((deleteButton) => {
-        deleteButton.addEventListener('click', () => {
-           console.log('need to delete this current row')
-        })
-    });
 }
 
 
-
-//CALLS
-userInput.addBookToLibrary()
 
 
