@@ -73,7 +73,6 @@ function addDeleteListeners (tableRowIndex) {
 
 
 //CALLS
-
 userInput.addBookToLibrary()
-console.log(bookTitle)
+
 
