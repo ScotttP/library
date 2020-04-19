@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
+    <title>Library App</title>
     <link rel = "stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -12,9 +12,9 @@
         <div class="upperContentContainer">
             <div class="userInputContainer">
                 <form>
-                    <input type="text" id="bookTitle" placeholder="Title">
-                    <input type="text" id="bookAuthor" placeholder="Author">
-                    <input type="text" id="bookPages" placeholder="Pages">
+                    <input type="text" id="bookTitle" value ='To Kill A Mocking Bird' placeholder="Title">
+                    <input type="text" id="bookAuthor" value ='Harper Lee' placeholder="Author">
+                    <input type="text" id="bookPages" value ='296' placeholder="Pages">
                     <label for="readOrNot">Have You Read This Book? </label>
                     <select id="readOrNot">
                         <option value="Yes">Yes</option>
@@ -40,10 +40,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr id="tableContents">
                             <td>Harry Potter</td>
                             <td>JK Rowling</td>
-                            <td>69</td>
+                            <td>420</td>
                             <td>Yes</td>
                             <td><button>DELETE</button></td>
                         </tr>
