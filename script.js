@@ -4,23 +4,25 @@ let bookTitle;
 let bookAuthor;
 let bookPages;
 let readOrNot;
-
+let userInput;
 //QUERY SELECTORS
 const tableContents = document.querySelector('#tBody');
 const addToBookListButton = document.querySelector('#addToBookListButton');
 
+clearInputs();//sets all of the inputs to blank
 
 //EVENT LISTENERS
 addToBookListButton.addEventListener('click', () => {
     addBooktoMyLibrary();
-    renderBooksInTable();
-    console.log(myLibrary);
-
+    renderBooksInTable(userInput);
+    clearInputs();
+  
 })
 addToBookListButton.addEventListener('keypress', function(e) {
     if (e.key == 'enter'){
         addBooktoMyLibrary();
-        renderBooksInTable();
+        renderBooksInTable(userInput);
+        clearInputs();
     }
 })
 
@@ -31,8 +33,6 @@ function Book (title,author,pages,readOrNot) {
     this.pages = pages
     this.readOrNot = readOrNot
 }
-//PROTOTYPES
-
 
 //FUNCTIONS
 function addBooktoMyLibrary () {
@@ -41,18 +41,43 @@ function addBooktoMyLibrary () {
     bookPages = document.getElementById('bookPages').value;
     readOrNot = document.getElementById('readOrNot').value;
 
-    const userInput = new Book (bookTitle,bookAuthor,bookPages,readOrNot);
+    userInput = new Book (bookTitle,bookAuthor,bookPages,readOrNot);
 
     myLibrary.push(userInput)
 }
-function renderBooksInTable () {
+function renderBooksInTable (userInput) {
+    addTableRow = document.createElement('tr');
+    addTableRow.setAttribute('id','tableRow');
+    tableContents.appendChild(addTableRow)
+    for (let property in userInput){
+        let cell = document.createElement('td')
+        cell.textContent = (`${userInput[property]}`)
+        addTableRow.appendChild(cell)
 
-}
-function addDeleteButton () {
+    }
+    addDeleteButton();
+    addDeleteListeners();
     
 }
+function addDeleteButton () {
+    let deleteButton = document.createElement('button')
+    deleteButton.classList.add('deleteButton')
+    deleteButton.textContent = 'DELETE'
+    addTableRow.appendChild(deleteButton)
+}
 function addDeleteListeners () {
-
+    let deleteButtonSelector =  document.querySelectorAll('.deleteButton');
+    deleteButtonSelector.forEach((deleteButton) => {
+        deleteButton.addEventListener('click', () => {
+           
+        })
+    });
+}
+function clearInputs () {
+    document.getElementById('bookTitle').value = "";
+    document.getElementById('bookAuthor').value = "";
+    document.getElementById('bookPages').value = "";
+    document.getElementById('readOrNot').value = "";
 }
 
 
