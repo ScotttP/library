@@ -10,13 +10,13 @@ const tableContents = document.querySelector('#tBody');
 const addToBookListButton = document.querySelector('#addToBookListButton');
 
 clearInputs();//sets all of the inputs to blank
-console.log(bookTitle)
+
 //EVENT LISTENERS
 addToBookListButton.addEventListener('click', () => {
     addBooktoMyLibrary();
     renderBooksInTable(userInput);
     clearInputs();
-  
+    console.log(myLibrary)
 })
 addToBookListButton.addEventListener('keypress', function(e) {
     if (e.key == 'enter'){
@@ -47,7 +47,7 @@ function addBooktoMyLibrary () {
 }
 function renderBooksInTable (userInput) {
     addTableRow = document.createElement('tr');
-    addTableRow.setAttribute('id','tableRow');
+    addTableRow.setAttribute('id','tableRow';
     tableContents.appendChild(addTableRow)
     for (let property in userInput){
         let cell = document.createElement('td')
@@ -69,7 +69,7 @@ function addDeleteListeners () {
     let deleteButtonSelector =  document.querySelectorAll('#deleteButton');
     deleteButtonSelector.forEach((deleteButton) => {
         deleteButton.addEventListener('click', () => {
-           
+            console.log(deleteButton.parentNode.rowIndex)
         })
     });
 }
