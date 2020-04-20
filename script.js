@@ -10,7 +10,7 @@ const tableContents = document.querySelector('#tBody');
 const addToBookListButton = document.querySelector('#addToBookListButton');
 
 clearInputs();//sets all of the inputs to blank
-
+console.log(bookTitle)
 //EVENT LISTENERS
 addToBookListButton.addEventListener('click', () => {
     addBooktoMyLibrary();
@@ -61,12 +61,12 @@ function renderBooksInTable (userInput) {
 }
 function addDeleteButton () {
     let deleteButton = document.createElement('button')
-    deleteButton.classList.add('deleteButton')
+    deleteButton.setAttribute('id','deleteButton')
     deleteButton.textContent = 'DELETE'
     addTableRow.appendChild(deleteButton)
 }
 function addDeleteListeners () {
-    let deleteButtonSelector =  document.querySelectorAll('.deleteButton');
+    let deleteButtonSelector =  document.querySelectorAll('#deleteButton');
     deleteButtonSelector.forEach((deleteButton) => {
         deleteButton.addEventListener('click', () => {
            
