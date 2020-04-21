@@ -14,14 +14,14 @@ clearInputs();//sets all of the inputs to blank
 //EVENT LISTENERS
 addToBookListButton.addEventListener('click', () => {
     addBooktoMyLibrary();
-    renderBooksInTable(myLibrary,userInput);
+    renderBooksInTable(myLibrary);
     clearInputs();
     
 })
 addToBookListButton.addEventListener('keypress', function(e) {
     if (e.key == 'enter'){
         addBooktoMyLibrary();
-        renderBooksInTable(userInput);
+        renderBooksInTable(myLibrary,userInput);
         clearInputs();
     }
 })
@@ -46,30 +46,29 @@ function addBooktoMyLibrary () {
     myLibrary.push(userInput)
 }
 function renderBooksInTable (myLibrary) {
+    let myLibraryIndex = 0;
     tableContents.innerHTML= '' 
     for (let index in myLibrary){
         addTableRow = document.createElement('tr');
-        let indexOfBook = myLibrary.indexOf(index);
-        tableContents.appendChild(addTableRow)
-
         for (let property in myLibrary[index]){
             let td = document.createElement('td')
             td.textContent = (`${myLibrary[index][property]}`)
             addTableRow.appendChild(td)
-    
         }
-        addDeleteButton(indexOfBook);
-        addDeleteListeners(indexOfBook);
+        tableContents.appendChild(addTableRow)
+        addDeleteButton(myLibraryIndex);
+        myLibraryIndex++;
     }
-
-    
 }
-function addDeleteButton (index) {
+function addDeleteButton (myLibraryIndex) {
+    
     let deleteButton = document.createElement('button')
     deleteButton.setAttribute('class', 'deleteButton');
-    deleteButton.setAttribute('data-index', index);
+    deleteButton.setAttribute('data-index', myLibraryIndex);
     deleteButton.textContent = 'DELETE'
     addTableRow.appendChild(deleteButton)
+
+    addDeleteListeners(myLibraryIndex);
 }
 function addDeleteListeners (index) {
     let deleteButtonSelector =  document.querySelectorAll('.deleteButton');
@@ -77,7 +76,7 @@ function addDeleteListeners (index) {
         deleteButton.addEventListener('click', () => {
             myLibrary.splice(index,1);
             renderBooksInTable(myLibrary);
-            console.log(myLibrary)
+
         })
     });
 
