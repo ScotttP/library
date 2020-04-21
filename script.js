@@ -16,7 +16,7 @@ addToBookListButton.addEventListener('click', () => {
     addBooktoMyLibrary();
     renderBooksInTable(userInput);
     clearInputs();
-    console.log(myLibrary)
+    
 })
 addToBookListButton.addEventListener('keypress', function(e) {
     if (e.key == 'enter'){
@@ -47,12 +47,12 @@ function addBooktoMyLibrary () {
 }
 function renderBooksInTable (userInput) {
     addTableRow = document.createElement('tr');
-    addTableRow.setAttribute('id','tableRow';
+    addTableRow.setAttribute('data',);
     tableContents.appendChild(addTableRow)
     for (let property in userInput){
-        let cell = document.createElement('td')
-        cell.textContent = (`${userInput[property]}`)
-        addTableRow.appendChild(cell)
+        let td = document.createElement('td')
+        td.textContent = (`${userInput[property]}`)
+        addTableRow.appendChild(td)
 
     }
     addDeleteButton();
@@ -69,7 +69,8 @@ function addDeleteListeners () {
     let deleteButtonSelector =  document.querySelectorAll('#deleteButton');
     deleteButtonSelector.forEach((deleteButton) => {
         deleteButton.addEventListener('click', () => {
-            console.log(deleteButton.parentNode.rowIndex)
+            myLibrary.splice(deleteButton.parentNode.rowIndex-1,1)
+            console.log(myLibrary)
         })
     });
 }
