@@ -14,7 +14,7 @@ clearInputs();//sets all of the inputs to blank
 //EVENT LISTENERS
 addToBookListButton.addEventListener('click', () => {
     addBooktoMyLibrary();
-    renderBooksInTable(userInput);
+    renderBooksInTable(userInput,myLibrary);
     clearInputs();
     
 })
@@ -45,32 +45,35 @@ function addBooktoMyLibrary () {
 
     myLibrary.push(userInput)
 }
-function renderBooksInTable (userInput) {
+function renderBooksInTable (userInput,myLibrary) {
     addTableRow = document.createElement('tr');
-    addTableRow.setAttribute('data',);
+    let index = myLibrary.indexOf(userInput);
+    addTableRow.setAttribute('data-index',index);
     tableContents.appendChild(addTableRow)
+
     for (let property in userInput){
         let td = document.createElement('td')
         td.textContent = (`${userInput[property]}`)
         addTableRow.appendChild(td)
 
     }
-    addDeleteButton();
-    addDeleteListeners();
+
+    addDeleteButton(index);
+    addDeleteListeners(index);
     
 }
-function addDeleteButton () {
+function addDeleteButton (index) {
     let deleteButton = document.createElement('button')
-    deleteButton.setAttribute('id','deleteButton')
+    deleteButton.setAttribute('class', 'deleteButton');
+    deleteButton.setAttribute('data-index', index);
     deleteButton.textContent = 'DELETE'
     addTableRow.appendChild(deleteButton)
 }
-function addDeleteListeners () {
-    let deleteButtonSelector =  document.querySelectorAll('#deleteButton');
+function addDeleteListeners (index) {
+    let deleteButtonSelector =  document.querySelectorAll('.deleteButton');
     deleteButtonSelector.forEach((deleteButton) => {
         deleteButton.addEventListener('click', () => {
-            myLibrary.splice(deleteButton.parentNode.rowIndex-1,1)
-            console.log(myLibrary)
+            myLibrary.splice(index,1);
         })
     });
 }
