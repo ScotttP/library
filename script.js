@@ -14,7 +14,7 @@ clearInputs();//sets all of the inputs to blank
 //EVENT LISTENERS
 addToBookListButton.addEventListener('click', () => {
     addBooktoMyLibrary();
-    renderBooksInTable(userInput,myLibrary);
+    renderBooksInTable(myLibrary,userInput);
     clearInputs();
     
 })
@@ -45,21 +45,23 @@ function addBooktoMyLibrary () {
 
     myLibrary.push(userInput)
 }
-function renderBooksInTable (userInput,myLibrary) {
-    addTableRow = document.createElement('tr');
-    let index = myLibrary.indexOf(userInput);
-    addTableRow.setAttribute('data-index',index);
-    tableContents.appendChild(addTableRow)
+function renderBooksInTable (myLibrary) {
+    tableContents.innerHTML= '' 
+    for (let index in myLibrary){
+        addTableRow = document.createElement('tr');
+        let indexOfBook = myLibrary.indexOf(index);
+        tableContents.appendChild(addTableRow)
 
-    for (let property in userInput){
-        let td = document.createElement('td')
-        td.textContent = (`${userInput[property]}`)
-        addTableRow.appendChild(td)
-
+        for (let property in myLibrary[index]){
+            let td = document.createElement('td')
+            td.textContent = (`${myLibrary[index][property]}`)
+            addTableRow.appendChild(td)
+    
+        }
+        addDeleteButton(indexOfBook);
+        addDeleteListeners(indexOfBook);
     }
 
-    addDeleteButton(index);
-    addDeleteListeners(index);
     
 }
 function addDeleteButton (index) {
@@ -74,8 +76,11 @@ function addDeleteListeners (index) {
     deleteButtonSelector.forEach((deleteButton) => {
         deleteButton.addEventListener('click', () => {
             myLibrary.splice(index,1);
+            renderBooksInTable(myLibrary);
+            console.log(myLibrary)
         })
     });
+
 }
 function clearInputs () {
     document.getElementById('bookTitle').value = "";
