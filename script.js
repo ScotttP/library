@@ -61,26 +61,19 @@ function renderBooksInTable (myLibrary) {
     }
 }
 function addDeleteButton (myLibraryIndex) {
-    
     let deleteButton = document.createElement('button')
     deleteButton.setAttribute('class', 'deleteButton');
     deleteButton.setAttribute('data-index', myLibraryIndex);
     deleteButton.textContent = 'DELETE'
     addTableRow.appendChild(deleteButton)
 
-    addDeleteListeners(myLibraryIndex);
-}
-function addDeleteListeners (index) {
-    let deleteButtonSelector =  document.querySelectorAll('.deleteButton');
-    deleteButtonSelector.forEach((deleteButton) => {
-        deleteButton.addEventListener('click', () => {
-            myLibrary.splice(index,1);
-            renderBooksInTable(myLibrary);
+    deleteButton.addEventListener('click', () => {
+        myLibrary.splice(myLibraryIndex,1);
+        renderBooksInTable(myLibrary);
 
-        })
-    });
-
+    })
 }
+
 function clearInputs () {
     document.getElementById('bookTitle').value = "";
     document.getElementById('bookAuthor').value = "";
