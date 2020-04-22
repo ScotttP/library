@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library App</title>
     <link rel = "stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="appContainer">
@@ -15,7 +16,7 @@
                     <input type="text" id="bookTitle" placeholder="Title" required>
                     <input type="text" id="bookAuthor" placeholder="Author" required>
                     <input type="text" id="bookPages" placeholder="Pages" required>
-                    <label for="readOrNot">Have You Read This Book? </label>
+                    <label for="readOrNot">Have You Read This Book? </label><br>
                     <select id="readOrNot" required>
                         <option id ="optionNo" value="No">No</option>
                         <option id ="optionYes" value="Yes">Yes</option>
@@ -24,8 +25,7 @@
                 </form>
             </div>
             <div class="addBookAndSave">
-                <button type ="button" id="addToBookListButton">Add To Book List</button>
-                <button id="saveButton">Save</button>
+                <button type ="button" id="addToBookListButton">Add To List</button>
             </div>
         </div>
         <div class="tableContainer">

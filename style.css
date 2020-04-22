@@ -1,17 +1,57 @@
 body {
     padding: 0;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #c94e4e;
+    color: #430d27;
 }
 .appContainer {
     margin-top: 25px;
+}
+
+.userInputContainer {
+    border: 5px solid #2c081a;
+    max-width: 650px;
+    width: 50vw;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #713045;
 }
 form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 13vw;
+    
 }
+input {
+    margin-bottom: 5vh;
+    min-width: 170px;
+    min-height: 30px;
+    max-width: 270px;
+    width: 25vw;
+    height: 1.3rem;
+    font-weight: 300;
+    font-size: 15px;
+    background-color: #fae6c8;
+    border-color: #430d27;
+}
+input:focus, #readOrNot:focus, #addToBookListButton:focus {
+    outline: none;
+}
+#readOrNot:hover, #addToBookListButton:hover {
+    cursor: pointer;
+}
+label {
+    width: 20vw;
+    color: #fae6c8;
+}
+
 thead{
     display: flex;
     justify-content: center;
@@ -21,7 +61,7 @@ thead{
 tbody {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-width: 150px;
     
@@ -34,14 +74,22 @@ tr{
 }
 th {
     min-width: 150px;
-    
+    border-bottom: 3px solid #430d27;;
 }
 td {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-width: 150px;
     
+}
+button, select {
+    background-color: #fae6c8;
+    color: #430d27;
+    border-color: #430d27;
+}
+button:hover, select:hover {
+    cursor: pointer;
 }
 .upperContentContainer{
     display: flex;
@@ -58,6 +106,7 @@ td {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    padding: 20px;
 }
 .tableContainer {
     display: flex;
@@ -68,7 +117,23 @@ td {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 900;
+    font-size: 50px;
 }
 #readOrNot {
-    max-width: 50px;
+    max-width: 125px;
+    width: 12vw;
+}
+#addToBookListButton {
+    width: 10vw;
+    height: 3vh;
+    font-size: 15px;
+    min-width: 100px;
+    max-width: 60px;
+    max-height: 30px;
+}
+#heading {
+    color: #fae6c8;
+    color: #430d27;
+    text-shadow: -1px 0 #fae6c8, 0 1px #fae6c8, 1px 0 #fae6c8, 0 -1px #fae6c8;
 }
