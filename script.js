@@ -14,6 +14,7 @@ clearInputs();//sets all of the inputs to blank
 //EVENT LISTENERS
 addToBookListButton.addEventListener('click', () => {
     addBooktoMyLibrary();
+    
     renderBooksInTable(myLibrary);
     clearInputs();
     
@@ -21,7 +22,7 @@ addToBookListButton.addEventListener('click', () => {
 addToBookListButton.addEventListener('keypress', function(e) {
     if (e.key == 'enter'){
         addBooktoMyLibrary();
-        renderBooksInTable(myLibrary,userInput);
+        renderBooksInTable(myLibrary);
         clearInputs();
     }
 })
@@ -40,6 +41,15 @@ function addBooktoMyLibrary () {
     bookAuthor = document.getElementById('bookAuthor').value;
     bookPages = document.getElementById('bookPages').value;
     readOrNot = document.getElementById('readOrNot').value;
+    
+    if (bookTitle == '' || bookAuthor == '' || bookPages == '' || readOrNot =='') {
+            alert('Invalid Entry. Please make sure all values are entered or selected')
+            return
+      }
+    if (isNaN(bookPages)){
+        alert('Invalid Entry. Please enter a number of pages')
+        return
+    }
 
     userInput = new Book (bookTitle,bookAuthor,bookPages,readOrNot);
 
@@ -47,18 +57,43 @@ function addBooktoMyLibrary () {
 }
 function renderBooksInTable (myLibrary) {
     let myLibraryIndex = 0;
-    tableContents.innerHTML= '' 
+    tableContents.innerText= ''; 
     for (let index in myLibrary){
         addTableRow = document.createElement('tr');
+
         for (let property in myLibrary[index]){
             let td = document.createElement('td')
-            td.textContent = (`${myLibrary[index][property]}`)
+            if (property == 'readOrNot' ){
+                addReadSelection(td,myLibrary,index,property);
+            }else {
+                td.textContent = (`${myLibrary[index][property]}`)
+            }
             addTableRow.appendChild(td)
         }
+        
         tableContents.appendChild(addTableRow)
         addDeleteButton(myLibraryIndex);
         myLibraryIndex++;
     }
+}
+function addReadSelection (td,myLibrary,index,property) {
+    let readSelection = document.createElement('select');
+    td.appendChild(readSelection);
+    let readStatusArray = ['No','Yes','In-Progress']
+        for (let i = 0; i< readStatusArray.length; i++){
+            let option = document.createElement('option');
+            option.value= readStatusArray[i];
+            option.text = readStatusArray[i];
+            readSelection.appendChild(option)
+        }
+    let userReadStatus = myLibrary[index][property];
+        for(let i, h = 0; i = readSelection.options[h]; h++) {
+            if (i.value == userReadStatus) {
+                readSelection.selectedIndex = h;
+                break;
+            }
+        }
+
 }
 function addDeleteButton (myLibraryIndex) {
     let deleteButton = document.createElement('button')
@@ -73,7 +108,6 @@ function addDeleteButton (myLibraryIndex) {
 
     })
 }
-
 function clearInputs () {
     document.getElementById('bookTitle').value = "";
     document.getElementById('bookAuthor').value = "";
