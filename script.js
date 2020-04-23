@@ -104,6 +104,7 @@ function addDeleteButton (myLibraryIndex) {
 
     deleteButton.addEventListener('click', () => {
         myLibrary.splice(myLibraryIndex,1);
+        
         renderBooksInTable(myLibrary);
 
     })
